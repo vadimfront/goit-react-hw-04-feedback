@@ -5,10 +5,6 @@ import React, { Component } from 'react';
 import css from './Statistics.module.css';
 
 export default class Statistics extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { good, neutral, bad, positivePercentage, totalFeedbacks } =
       this.props;

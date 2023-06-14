@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import css from './Button.module.css';
 
 export default class Button extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { btnClass, children, onClick, buttonVariant, buttonType } =
       this.props;
