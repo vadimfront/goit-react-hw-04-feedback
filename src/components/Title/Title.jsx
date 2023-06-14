@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import css from './Title.module.css';
 
 export default class Title extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   selectTitle = (level, children) => {
     switch (level) {
       case 'h1':
