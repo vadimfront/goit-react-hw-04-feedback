@@ -4,10 +4,6 @@ import Button from 'components/Button/Button';
 import css from './FeedbackOptions.module.css';
 
 export default class FeedbackOptions extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { onLeaveFeedback } = this.props;
     return (
