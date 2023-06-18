@@ -1,23 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import css from './Button.module.css';
 
-export default class Button extends Component {
-  render() {
-    const { btnClass, children, onClick, buttonVariant, buttonType } =
-      this.props;
-    return (
-      <button
-        className={css[btnClass]}
-        onClick={onClick}
-        data-type={buttonVariant}
-        type={buttonType}
-      >
-        {children}
-      </button>
-    );
-  }
-}
+export const Button = ({ btnClass, children, onClick, buttonType }) => {
+  return (
+    <button className={css[btnClass]} onClick={onClick} type={buttonType}>
+      {children}
+    </button>
+  );
+};
 
 Button.propTypes = {
   btnClass: PropTypes.string,

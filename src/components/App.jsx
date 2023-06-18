@@ -1,43 +1,49 @@
 import React, { Component } from 'react';
-import FeedbackOptions from './Feedback/FeedbackOptions';
 import {
   countPositiveFeedbackPercentage,
   countTotalFeedback,
 } from 'utils/feedbackUtils';
-import Statistics from './Feedback/Statistics';
-import Section from './Section/Section';
+import { Statistics } from './Statistics/Statistics';
+import { Notification } from './Notification/Notification';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Section } from './Section/Section';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    };
-  }
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
 
-  onLeaveFeedback = e => {
-    const type = e.target.dataset.type;
+  onLeaveFeedback = option => {
     this.setState(prevState => {
-      return { [type]: prevState[type] + 1 };
+      return { [option]: prevState[option] + 1 };
     });
   };
 
   render() {
-    const { good, neutral, bad } = this.state;
     const totalFeedbacks = countTotalFeedback(this.state);
-    const percentage = countPositiveFeedbackPercentage(totalFeedbacks, good);
+    const percentage = countPositiveFeedbackPercentage(
+      totalFeedbacks,
+      this.state.good
+    );
+    const stateOptions = Object.keys(this.state);
+
     return (
       <Section title="Please leave feedback">
-        <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          positivePercentage={percentage}
-          totalFeedbacks={totalFeedbacks}
+        <FeedbackOptions
+          stateOptions={stateOptions}
+          onLeaveFeedback={this.onLeaveFeedback}
         />
+        {totalFeedbacks ? (
+          <Statistics
+            options={this.state}
+            positivePercentage={percentage}
+            totalFeedbacks={totalFeedbacks}
+          />
+        ) : (
+          <Notification message="here is no feedback" />
+        )}
       </Section>
     );
   }
