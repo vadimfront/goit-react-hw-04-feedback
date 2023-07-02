@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     if (!totalFeedbacks) return;
     setPositivePercentage(Math.round((good / totalFeedbacks) * 100));
-  }, [totalFeedbacks]);
+  }, [totalFeedbacks, good]);
 
   const onLeaveFeedback = option => {
     if (option === 'Good') {
